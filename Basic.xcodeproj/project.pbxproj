@@ -14,6 +14,8 @@
 		BE327EC72067033800503206 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE327EC52067033800503206 /* LaunchScreen.storyboard */; };
 		BE327ED22067033800503206 /* BasicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE327ED12067033800503206 /* BasicTests.swift */; };
 		BE327EDD2067033800503206 /* BasicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE327EDC2067033800503206 /* BasicUITests.swift */; };
+		BE327EEB2068060B00503206 /* TimerSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE327EEA2068060B00503206 /* TimerSettingViewController.swift */; };
+		BE89E3A020719B1E00CA8D44 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE89E39F20719B1E00CA8D44 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		BE327ED82067033800503206 /* BasicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE327EDC2067033800503206 /* BasicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicUITests.swift; sourceTree = "<group>"; };
 		BE327EDE2067033800503206 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE327EEA2068060B00503206 /* TimerSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerSettingViewController.swift; sourceTree = "<group>"; };
+		BE89E39F20719B1E00CA8D44 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,9 +101,11 @@
 		BE327EBB2067033800503206 /* Basic */ = {
 			isa = PBXGroup;
 			children = (
+				BE89E39F20719B1E00CA8D44 /* TableViewController.swift */,
 				BE327EBC2067033800503206 /* AppDelegate.swift */,
 				BE327EBE2067033800503206 /* ViewController.swift */,
 				BE327EC02067033800503206 /* Main.storyboard */,
+				BE327EEA2068060B00503206 /* TimerSettingViewController.swift */,
 				BE327EC32067033800503206 /* Assets.xcassets */,
 				BE327EC52067033800503206 /* LaunchScreen.storyboard */,
 				BE327EC82067033800503206 /* Info.plist */,
@@ -260,7 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE327EBF2067033800503206 /* ViewController.swift in Sources */,
+				BE327EEB2068060B00503206 /* TimerSettingViewController.swift in Sources */,
 				BE327EBD2067033800503206 /* AppDelegate.swift in Sources */,
+				BE89E3A020719B1E00CA8D44 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,7 +435,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7A8R8Z6H3F;
 				INFOPLIST_FILE = Basic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SeniorDesign.Basic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -441,7 +451,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7A8R8Z6H3F;
 				INFOPLIST_FILE = Basic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.SeniorDesign.Basic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
