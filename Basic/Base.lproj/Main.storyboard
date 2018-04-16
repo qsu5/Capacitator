@@ -38,14 +38,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyz-3g-D3C">
-                                <rect key="frame" x="92" y="456" width="190" height="182"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="16" y="464" width="190" height="182"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <state key="normal" backgroundImage="bluetooth">
                                     <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="findBluetooth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w03-bL-LKu"/>
-                                    <segue destination="B1Z-BH-rg6" kind="show" id="gzC-gY-oNe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here is a phrase from previous page" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zyg-kI-iDJ">
@@ -55,6 +54,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="whY-Dk-58V">
+                                <rect key="frame" x="247" y="509" width="128" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Graph"/>
+                                <connections>
+                                    <action selector="goGraph:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6eU-Ir-aWc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -62,6 +70,7 @@
                     <navigationItem key="navigationItem" id="PMT-Ts-59F"/>
                     <connections>
                         <outlet property="bluetoothPairButton" destination="zyz-3g-D3C" id="Neq-ad-pEy"/>
+                        <outlet property="goGraphButton" destination="whY-Dk-58V" id="nFr-3Z-1m7"/>
                         <outlet property="setTime" destination="zyg-kI-iDJ" id="rO1-7G-PBl"/>
                         <outlet property="timeSettingButton" destination="RRI-0w-aPQ" id="xQM-Sc-0Av"/>
                     </connections>
@@ -69,45 +78,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="372" y="83.208395802098963"/>
-        </scene>
-        <!--Avaiable Devices-->
-        <scene sceneID="kjD-xd-9Lr">
-            <objects>
-                <tableViewController id="MWW-BL-AS3" customClass="TableViewController" customModule="Basic" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iUT-gj-fQz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qaH-0x-VNT">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qaH-0x-VNT" id="bJh-h0-uV1">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="MWW-BL-AS3" id="5Wa-et-UL8"/>
-                            <outlet property="delegate" destination="MWW-BL-AS3" id="8n7-i6-7IZ"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Avaiable Devices" id="fKE-sr-pV5">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="aKh-VT-o4K">
-                            <connections>
-                                <action selector="CancelButton:" destination="MWW-BL-AS3" id="hxd-bu-CdJ"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Start" id="7un-SD-pdB"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="SaveButton" destination="7un-SD-pdB" id="D6j-9J-BLC"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WzS-5y-RU6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1122" y="879"/>
         </scene>
         <!--Time Interval Setting-->
         <scene sceneID="5Z6-Bh-FsG">
@@ -195,24 +165,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9AW-UW-FE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132.8" y="81.859070464767626"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="xRo-yf-WT6">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="B1Z-BH-rg6" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rbs-ss-iTa">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="MWW-BL-AS3" kind="relationship" relationship="rootViewController" id="NkA-j3-4ba"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cxd-3B-Bmb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="371.19999999999999" y="879.76011994003011"/>
         </scene>
     </scenes>
     <resources>
