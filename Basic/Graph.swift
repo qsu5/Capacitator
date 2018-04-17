@@ -44,6 +44,15 @@ class Graph: UIViewController, CBPeripheralDelegate, ScrollableGraphViewDataSour
         currentVal.text = "I'am a test label..."
         
         peripheralPassed?.delegate = self
+        
+        
+        let data = "R".data(using: String.Encoding.utf8)!
+        
+        //[peripheral writeValue:data forCharacteristic:testCharacteristic type:CBCharacteristicWriteWithResponse];
+        // ios core-bluetooth
+        let characteristic = peripheralPassed!.services!.last!.characteristics!.last!
+        peripheralPassed?.writeValue(data, for: characteristic, type: .withoutResponse)
+        
         let frame = graphView.frame
         plotview = ScrollableGraphView(frame: frame, dataSource: self)
         let linePlot = LinePlot(identifier: "line") // Identifier should be unique for each plot.
@@ -51,7 +60,7 @@ class Graph: UIViewController, CBPeripheralDelegate, ScrollableGraphViewDataSour
 
         plotview.addPlot(plot: linePlot)
         plotview.addReferenceLines(referenceLines: referenceLines)
-        plotview.rangeMax = 255
+        plotview.rangeMax = 1023
         
         self.graphView.addSubview(plotview)
         // Do any additional setup after loading the view.
@@ -76,12 +85,20 @@ class Graph: UIViewController, CBPeripheralDelegate, ScrollableGraphViewDataSour
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        let comeData = String(data: characteristic.value!, encoding: String.Encoding.utf8)!
+        let comeData = String(data: characteristic.value!, encoding: String.Encoding.utf8)!.replacingOccurrences(of: "\r\n", with: "", options: .regularExpression)
         print("new data point: ", comeData)
-        linePlotData.insert(Double(comeData)!, at: 0)
-        linePlotData.removeLast()
-        plotview.reload()
-        // call graph thing here
+        if !comeData.isEmpty{
+            linePlotData.insert(Double(comeData)!, at: 0)
+            linePlotData.removeLast()
+            plotview.reload()
+            // call graph thing here
+        }
+        let data = "R".data(using: String.Encoding.utf8)!
+        
+        //[peripheral writeValue:data forCharacteristic:testCharacteristic type:CBCharacteristicWriteWithResponse];
+        // ios core-bluetooth
+        let characteristic = peripheralPassed!.services!.last!.characteristics!.last!
+        peripheralPassed?.writeValue(data, for: characteristic, type: .withoutResponse)
     }
 
     override func viewDidAppear(_ animated: Bool) {

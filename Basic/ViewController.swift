@@ -21,6 +21,10 @@ class ViewController: UIViewController, BluetoothListDelegate, CBPeripheralDeleg
     @IBAction func unwindToSetTime(sender: UIStoryboardSegue) {
         if let sourceViewController = sender.source as? TimerSettingViewController, let interval = sourceViewController.hrDisplay.text {
             receiveTime = interval
+            
+            if mainPeripheral != nil{
+                settingTimeToArduino(device: mainPeripheral!)
+            }
         }
     }
     @IBAction func goGraph(_ sender: Any) {
@@ -33,14 +37,14 @@ class ViewController: UIViewController, BluetoothListDelegate, CBPeripheralDeleg
     func bluetoothListDidSelectPeripheral(peripheral: CBPeripheral) {
         print("inside viewController, got peripheral ", peripheral)
         mainPeripheral = peripheral
-        
         let characteristic = mainPeripheral!.services!.last!.characteristics!.last!
-        let data = "Hello World".data(using: String.Encoding.utf8)!
         
-        //[peripheral writeValue:data forCharacteristic:testCharacteristic type:CBCharacteristicWriteWithResponse];
-        // ios core-bluetooth
-        
-        mainPeripheral?.writeValue(data, for: characteristic, type: .withoutResponse)
+        if receiveTime.isEmpty{
+            setTime.text = "please set a time first!"
+        }
+        else{
+            settingTimeToArduino(device: mainPeripheral!);
+        }
         
         // get callbacks when data is sent from the device to the phone
         mainPeripheral?.delegate = self
@@ -51,6 +55,22 @@ class ViewController: UIViewController, BluetoothListDelegate, CBPeripheralDeleg
 //    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
 //        print("updated value for characteristic: ", String(data: characteristic.value!, encoding: String.Encoding.utf8)!)
 //    }
+    
+    func settingTimeToArduino(device: CBPeripheral){
+        let hr = Int(receiveTime.split(separator: ":")[0])
+        let min = Int(receiveTime.split(separator: ":")[1])
+        let sec = Int(receiveTime.split(separator: ":")[2])
+        
+        let interval = hr!*3600+60*min!+sec!
+        let strInterval = String(interval)
+        let strDate = strInterval+"\n"
+        let data = (strDate).data(using: String.Encoding.utf8)!
+        
+        //[peripheral writeValue:data forCharacteristic:testCharacteristic type:CBCharacteristicWriteWithResponse];
+        // ios core-bluetooth
+        let characteristic = device.services!.last!.characteristics!.last!
+        device.writeValue(data, for: characteristic, type: .withoutResponse)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +106,16 @@ class ViewController: UIViewController, BluetoothListDelegate, CBPeripheralDeleg
         print (receiveTime)
         super.viewDidAppear(animated)
         setTime.text = receiveTime
+        
+//        if !receiveTime.isEmpty{
+//        let hr = Int(receiveTime.split(separator: ":")[0])
+//        let min = Int(receiveTime.split(separator: ":")[1])
+//        let sec = Int(receiveTime.split(separator: ":")[2])
+//
+//        let interval = hr!*3600+60*min!+sec!
+//        print(interval)
+//        }
+
     }
 
 }
