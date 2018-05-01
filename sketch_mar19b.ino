@@ -143,13 +143,18 @@ void loop() {
     }
     
     else if(c != '\n'){
+      Serial.print("the num is;");
+      Serial.println(num);
       if (num != -1){
         num = num*10+int(c) - 48; // convert from ascii table
-        Serial.println("find non -1 " + c);
+        Serial.println("find non -1 "+int(c));
       }
       else{
-        Serial.println("find -1");
-        num = int(c) - 48; // convert from ascii table
+        Serial.print("find -1");
+        Serial.println(int(c));
+        if ((int(c)-48)>0){
+         num = int(c) - 48; // convert from ascii table
+        }
       }
     }
     else{
